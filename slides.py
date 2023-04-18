@@ -3,7 +3,7 @@ from image import create_image, Image, Color
 from PIL import Image as PILImage
 import os
 import time
-import argparse
+from parser import slides_args
 
 class Slides():
     W: int
@@ -71,18 +71,8 @@ def gif_to_slides(filename: str, W: int, H: int):
 
 
 if __name__ == '__main__':
-    def get_args():
-        parser = argparse.ArgumentParser()
-        parser.add_argument('-H', type=int, default=20)
-        parser.add_argument('-W', type=int, default=20)
-        parser.add_argument('--iter', '-i', type=int, default=5)
-        parser.add_argument('--refresh', '-r', type=float, default=0.1)
-        files = parser.add_mutually_exclusive_group(required=True)
-        files.add_argument('--dir', type=str)
-        files.add_argument('--gif', type=str)
-        options = parser.parse_args()
-        return options
-    options = get_args()
+    parser = slides_args()
+    options = parser.parse_args()
     if options.dir is not None:
         slides = dir_to_slides(options.dir, W=options.W, H=options.H)
         slideshow(slides, iterations=options.iter, refresh=options.refresh)

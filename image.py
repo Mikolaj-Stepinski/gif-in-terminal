@@ -3,7 +3,7 @@ from typing import List
 from colors import Color, invalid_color
 from PIL import Image as PILImage
 import numpy as np
-import argparse
+from parser import image_args
 
 class Image():
     matrix: List[List[Color]]
@@ -79,13 +79,7 @@ def create_image(filepath: str, W=None, H=None):
 
 
 if __name__ == '__main__':
-    def get_args():
-        parser = argparse.ArgumentParser()
-        parser.add_argument('-H', type=int, default=20)
-        parser.add_argument('-W', type=int, default=20)
-        parser.add_argument('--file', type=str, required=True)
-        options = parser.parse_args()
-        return options
-    options = get_args()
+    parser = image_args()
+    options = parser.parse_args()
     image = create_image(options.file, H=options.H, W=options.W)
     image.paint()
