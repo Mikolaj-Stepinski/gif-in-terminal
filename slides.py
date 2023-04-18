@@ -24,7 +24,6 @@ def dir_to_slides(dirname: str, W: int, H: int) -> Slides:
         os.listdir(dirname)
     ]
     files = sorted(files)
-    # print(files)
     images = [
         create_image(file, W, H)
         for file in files
@@ -66,8 +65,6 @@ def gif_to_slides(filename: str, W: int, H: int):
                 myImage.set_value(row, column, Color(color[0], color[1], color[2]))
         images.append(myImage)
     return Slides(W, H, images)
-
-
 
 
 if __name__ == '__main__':

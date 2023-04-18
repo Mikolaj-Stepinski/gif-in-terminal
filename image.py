@@ -2,7 +2,6 @@ from io import TextIOWrapper
 from typing import List
 from colors import Color, invalid_color
 from PIL import Image as PILImage
-import numpy as np
 from parser import image_args
 
 class Image():
